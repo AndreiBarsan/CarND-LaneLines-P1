@@ -10,11 +10,6 @@ The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
 * Reflect on your work in a written report
 
-
-[//]: # (Image References)
-
-% [image1]: ./examples/grayscale.jpg "Grayscale"
-
 ---
 
 ### Reflection
@@ -37,18 +32,17 @@ The pipeline consists of 5 steps.
      previous step to the full left and right lane markers. This function was
      heavily modified from the original template, and consists of the following
      steps:
-
-        a) Partition the raw line segments into two bins, one for the left lane
+        1. Partition the raw line segments into two bins, one for the left lane
         and one for the right one, based on the expected slopes of the given
         lines. They are +30 degrees for the right lane, and -35 degrees for the
         left one. The function allows for quite a bit of variance around those
         values, for robustness, but still discards clear outliers.
-        b) For the left and right sides separately, RANSAC is used to fit
+        2. For the left and right sides separately, RANSAC is used to fit
         a "mother-line" to the multiple separate segments. The Python package
         `scikit-learn` has been used for this. The choice of RANSAC is
         motivated by the algorithm's robustness to outliers, which may creep up
         due to, e.g., shadows on the road, or other cars.
-        c) After the two main line equations are obtained, they are rendered
+        3. After the two main line equations are obtained, they are rendered
         onto a copy of the input frame.
 
 No thresholding was used, as it proved to decrease the overall accuracy of the
@@ -59,8 +53,7 @@ Jupyter's interactive widgets. I added UI controls to allow instant feedback
 for tweaking the blur kernel size, the canny thresholds, and many other
 parameters. The resulting interface can be seen in the following figure:
 
-![parameter exploration UI][writeup_images/interactive.png]
-
+![parameter exploration UI](writeup_images/interactive.png)
 
 
 ### 2. Identify potential shortcomings with your current pipeline
